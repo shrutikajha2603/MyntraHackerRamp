@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="intro">
+    <h1>Let's Get Started!</h1>
+    <p>Choose an option:</p>
+    <ul class="option-list">
+        <li><a href="{{ url_for('showcase') }}" class="button">Showcase Your Brand</a></li>
+        <li><a href="{{ url_for('marketing') }}" class="button">Marketing and Job Listings</a></li>
+    </ul>
+</div>
+{% endblock %}

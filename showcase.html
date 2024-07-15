@@ -1,0 +1,173 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="showcase-content">
+    <div class="showcase-form">
+        <h1 class="form-title">Showcase Your Brand</h1>
+        <form method="POST" class="brand-form">
+            <label for="name">Brand Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="linkedin_profile">LinkedIn Profile:</label>
+            <input type="text" id="linkedin_profile" name="linkedin_profile" required>
+            <label for="website_link">Website (Optional):</label>
+            <input type="text" id="website_link" name="website_link">
+            <label for="best_selling_products">Best Selling Products (Optional):</label>
+            <textarea id="best_selling_products" name="best_selling_products"></textarea>
+            <button type="submit">Add Brand</button>
+        </form>
+    </div>
+
+    <hr class="divider">
+
+    <div class="brand-showcase">
+        <h2 class="showcase-title">Brand Showcase</h2>
+        <ul class="brand-list">
+            {% for brand in brands %}
+            <li class="brand-item">
+                <h3>{{ brand.name }}</h3>
+                <p>LinkedIn: <a href="{{ brand.linkedin_profile }}" class="brand-link">{{ brand.linkedin_profile }}</a></p>
+                {% if brand.website_link %}
+                <p>Website: <a href="{{ brand.website_link }}" class="brand-link">{{ brand.website_link }}</a></p>
+                {% endif %}
+                {% if brand.best_selling_products %}
+                <p>Best Selling Products: {{ brand.best_selling_products }}</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<style>
+    /* Styles for Showcase page */
+    .showcase-content {
+        width: 100%;
+        max-width: 900px;
+        padding: 20px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
+    }
+
+    .showcase-form {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+    }
+
+    .form-title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-form label {
+        font-size: 1.1em;
+        color: #ff5da2;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .brand-form input, 
+    .brand-form select, 
+    .brand-form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ff5da2;
+        border-radius: 5px;
+        background: #333;
+        color: #fff;
+        font-size: 1em;
+    }
+
+    .brand-form textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .brand-form button {
+        background: #ff5da2;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .brand-form button:hover {
+        background: #e64a7b;
+        transform: scale(1.05);
+    }
+
+    .brand-form button:active {
+        background: #d23a6b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .divider {
+        border: 0;
+        border-top: 2px solid #fff;
+        margin: 40px 0;
+    }
+
+    .brand-showcase {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .showcase-title {
+        font-size: 2.2em;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .brand-item {
+        background: #444;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-item h3 {
+        font-size: 1.8em;
+        color: #ff5da2;
+        margin-bottom: 10px;
+    }
+
+    .brand-item p {
+        color: #fff;
+        margin: 5px 0;
+    }
+
+    .brand-link {
+        color: #ff5da2;
+        text-decoration: none;
+    }
+
+    .brand-link:hover {
+        text-decoration: underline;
+        color: #e64a7b;
+    }
+</style>
+{% endblock %}

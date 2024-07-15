@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="add-campaign-content">
+    <h1 class="page-title">Add a New Campaign</h1>
+    <form method="POST" action="{{ url_for('marketing') }}" class="campaign-form">
+        <label for="title">Campaign Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="brand_id">Brand:</label>
+        <select id="brand_id" name="brand_id" required>
+            {% for brand in brands %}
+            <option value="{{ brand.id }}">{{ brand.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <button type="submit">Add Campaign</button>
+    </form>
+</div>
+
+<style>
+    /* Styles for Add Campaign page */
+    .add-campaign-content {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
+    }
+
+    .page-title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .campaign-form {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .campaign-form label {
+        font-size: 1.1em;
+        color: #ff5da2;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .campaign-form input, 
+    .campaign-form select, 
+    .campaign-form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ff5da2;
+        border-radius: 5px;
+        background: #333;
+        color: #fff;
+        font-size: 1em;
+    }
+
+    .campaign-form textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .campaign-form button {
+        background: #ff5da2;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .campaign-form button:hover {
+        background: #e64a7b;
+        transform: scale(1.05);
+    }
+
+    .campaign-form button:active {
+        background: #d23a6b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+</style>
+{% endblock %}

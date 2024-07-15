@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="job-listings-content">
+    <h1 class="page-title">Job Listings</h1>
+    <ul class="job-list">
+        {% for job in job_listings %}
+        <li class="job-item">
+            <h3 class="job-title">{{ job.title }}</h3>
+            <p class="job-description">{{ job.description }}</p>
+            <p class="job-brand">Brand: {{ job.brand.name }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    /* Styles for Job Listings page */
+    .job-listings-content {
+        width: 100%;
+        max-width: 900px;
+        padding: 20px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
+    }
+
+    .page-title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #ff5da2;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .job-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .job-item {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .job-title {
+        font-size: 1.8em;
+        color: #ff5da2;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .job-description,
+    .job-brand {
+        color: #fff;
+        margin: 5px 0;
+    }
+
+    .job-brand {
+        font-weight: bold;
+        color: #ff5da2;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(-50px); }
+        to { transform: translateX(0); }
+    }
+</style>
+{% endblock %}

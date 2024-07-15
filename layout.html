@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Integration</title>
+    <style>
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4e6391, #82719c, #bd849e);
+    
+    background-size: cover; /* Ensures the gradient covers the entire screen */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+        nav {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+            position: relative;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            animation: fadeIn 1s ease-out, slideIn 1s ease-out;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        nav ul li a:hover {
+            color: #ff5da2;
+            animation: pulse 0.5s ease-in-out;
+        }
+        .myntra-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+            animation-delay: 0.5s;
+            animation-fill-mode: backwards;
+        }
+        .header-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .header-image {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .header-title {
+            font-size: 3em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-out, moveUp 2s ease-out;
+        }
+        @font-face {
+            font-family: 'LinkedInFont';
+            src: url('https://fonts.gstatic.com/s/linkedin/v2/dc91ef.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .header-title {
+            font-family: 'LinkedInFont', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); }
+            to { transform: translateX(0); }
+        }
+        @keyframes moveUp {
+            from { transform: translateY(20px); }
+            to { transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animated-content {
+            animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        /* Additional styles for content */
+        .intro {
+            text-align: center;
+            margin: 40px 0;
+            color: #fff;
+        }
+
+        .intro h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2f0904;
+            text-shadow: 2px 2px 4px rgba(32, 1, 1, 0.411);
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #eee;
+        }
+
+        .option-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-list li {
+            margin: 15px 0;
+        }
+
+        .option-list .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background: #ff5da2;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .option-list .button:hover {
+            background: #e64a7b;
+            transform: scale(1.05);
+        }
+
+        .option-list .button:active {
+            background: #d23a6b;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Styles for Showcase Page */
+        .showcase-form {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto; /* Center the form */
+        }
+
+        .showcase-form label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #eee;
+        }
+
+        .showcase-form input, .showcase-form textarea {
+            width: calc(100% - 20px); /* Adjust width for padding */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 1em;
+            background: #fff;
+            color: #333;
+        }
+
+        .showcase-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .showcase-form button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background: #ff5da2;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .showcase-form button:hover {
+            background: #e64a7b;
+            transform: scale(1.05);
+        }
+
+        .showcase-form button:active {
+            background: #d23a6b;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-showcase {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .brand-showcase ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .brand-showcase li {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .brand-showcase h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #ff5da2;
+        }
+
+        .brand-showcase p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .brand-showcase a {
+            color: #ff5da2;
+            text-decoration: none;
+        }
+
+        .brand-showcase a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Myntra_Logo.png" alt="Myntra Logo" class="myntra-logo">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('showcase') }}">Showcase</a></li>
+            <li><a href="{{ url_for('marketing') }}">Marketing</a></li>
+            <li><a href="{{ url_for('add_brand') }}">Add Brand</a></li>
+            <li><a href="{{ url_for('add_job') }}">Add Job Listing</a></li>
+            <li><a href="{{ url_for('add_campaign') }}">Add Campaign</a></li>
+            <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div class="header-container">
+            <img src="https://storage.acerapps.io/app-1403/b2b-pazarlamada-yaz-tatili-s%C3%BCresince.webp" alt="FashionB2B Logo" class="header-image">
+            <div class="header-title">FashionB2B</div>
+        </div>
+        <div class="animated-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

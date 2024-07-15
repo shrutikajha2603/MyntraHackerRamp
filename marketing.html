@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="marketing-content">
+    <h1 class="page-title">Marketing and Job Listings</h1>
+    <form method="POST" class="job-form">
+        <label for="title">Job Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="brand_id">Brand:</label>
+        <select id="brand_id" name="brand_id" required>
+            {% for brand in brands %}
+            <option value="{{ brand.id }}">{{ brand.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <button type="submit">Add Job Listing</button>
+    </form>
+    <hr class="divider">
+    <h2 class="listing-title">Current Job Listings</h2>
+    <ul class="job-listings">
+        {% for job in job_listings %}
+        <li class="job-item">
+            <h3 class="job-title">{{ job.title }}</h3>
+            <p class="job-description">{{ job.description }}</p>
+            <p class="job-brand">Brand: {{ job.brand.name }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    /* Styles for Marketing and Job Listings page */
+    .marketing-content {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        animation: fadeIn 2s ease-out, slideIn 2s ease-out;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
+    }
+
+    .page-title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .job-form {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+    }
+
+    .job-form label {
+        font-size: 1.1em;
+        color: #ff5da2;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .job-form input, .job-form select, .job-form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ff5da2;
+        border-radius: 5px;
+        background: #333;
+        color: #fff;
+        font-size: 1em;
+    }
+
+    .job-form textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .job-form button {
+        background: #ff5da2;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .job-form button:hover {
+        background: #e64a7b;
+        transform: scale(1.05);
+    }
+
+    .job-form button:active {
+        background: #d23a6b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .divider {
+        border: 0;
+        border-top: 1px solid #eee;
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .listing-title {
+        font-size: 2em;
+        color: #ff5da2;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .job-listings {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .job-item {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .job-title {
+        margin-top: 0;
+        color: #ff5da2;
+        font-size: 1.5em;
+    }
+
+    .job-description, .job-brand {
+        margin: 5px 0;
+        color: #eee;
+    }
+</style>
+{% endblock %}
