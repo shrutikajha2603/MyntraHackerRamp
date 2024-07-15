@@ -1,0 +1,15 @@
+/* src/components/Card.css */
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Adjust based on your layout */
+    text-align: center; /* Centers text horizontally */
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: center; /* Centers children vertically */
+    align-items: center; /* Centers children horizontally */
+    height: 50vh; /* Set a fixed height or adjust as needed */
+  }
