@@ -1,0 +1,33 @@
+.board-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+  
+.board-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50vh;
+}
+  
+.board-card h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+  
+.board-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
