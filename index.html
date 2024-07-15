@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myntra</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #e8c8f1, #d3a8d3, #b48ac0, #f8a8c5); /* Lavender, pink, purple, and light pink blend */
+    }
+    .background-images {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      grid-template-rows: repeat(2, 1fr); /* 2 rows */
+      gap: 15px; /* Gap between images */
+      padding: 15px; /* Padding around the grid */
+      overflow: hidden;
+      perspective: 1000px; /* Adds perspective for 3D effect */
+    }
+    .background-images img {
+      width: 100%; /* Full width of the grid cell */
+      height: auto; /* Maintain aspect ratio */
+      max-width: 500px; /* Maximum width */
+      max-height: 450px; /* Maximum height */
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+      opacity: 0;
+      transform: scale(0.8) rotateX(10deg) rotateY(10deg); /* Smaller scale */
+      animation: fadeInOut 10s infinite; /* Adjusted duration */
+    }
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; transform: scale(0.8) rotateX(10deg) rotateY(10deg); }
+      20%, 80% { opacity: 1; transform: scale(1) rotateX(0deg) rotateY(0deg); }
+    }
+    .background-images img:nth-child(1) { animation-delay: 0s; }
+    .background-images img:nth-child(2) { animation-delay: 1s; }
+    .background-images img:nth-child(3) { animation-delay: 2s; }
+    .background-images img:nth-child(4) { animation-delay: 3s; }
+    .background-images img:nth-child(5) { animation-delay: 4s; }
+    .background-images img:nth-child(6) { animation-delay: 5s; }
+    .background-images img:nth-child(7) { animation-delay: 6s; }
+    .background-images img:nth-child(8) { animation-delay: 7s; }
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 150px;
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      color: #ff3f6c; /* Myntra's primary color */
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .pinmy-style {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3em;
+      color: #a00d68; /* Pinkish color */
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .form-container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.4); /* More transparent background */
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+      backdrop-filter: blur(6px); /* Slightly less blur */
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: #333; /* Darker color for readability */
+    }
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.8); /* Slightly more opaque input */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #ff3f6c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      background-color: #e6325e;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-images">
+    <img src="https://i.pinimg.com/736x/da/4c/52/da4c52a2f96b30bb27fabd5fd63c856e.jpg" alt="Pinterest Product 1">
+    <img src="https://5.imimg.com/data5/SI/JT/VF/SELLER-37269396/beautiful-and-gorgeous-party-and-wedding-wear-designer-saree-500x500.jpg" alt="Pinterest Product 2">
+    <img src="https://i.pinimg.com/736x/43/a9/84/43a984d3336f566d7aafa12dc6c6f963.jpg" alt="Pinterest Product 3">
+    <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/25260156/2023/9/29/3d04b8b4-1104-4801-bed4-17ebf98223301695968509595KALINIWomenPinkEthnicMotifsYokeDesignRegularGottaPattiKurtaw1.jpg" alt="Pinterest Product 4">
+    <img src="https://i.pinimg.com/474x/2b/6c/aa/2b6caaf0c2675a4c885b96ff07a8e2ca.jpg" alt="Pinterest Product 5">
+    <img src="https://i.pinimg.com/564x/c6/f0/2a/c6f02aaec796aa31a69e1e14afdd49a3.jpg" alt="Pinterest Product 6">
+    <img src="https://i.pinimg.com/564x/62/e0/7e/62e07eac1f67b0feb93699916791b173.jpg" alt="Pinterest Product 7">
+    <img src="https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_412,c_limit,fl_progressive/assets/images/2024/1/12/be144387-c03a-483b-99e6-0b17d2bb67891705071068751-compressed_40367_0.jpg" alt="Pinterest Product 8">
+  </div>
+  <img src="https://aartisto.com/wp-content/uploads/2020/11/myntra.png" alt="Myntra Logo" class="logo">
+  <h1>Myntra</h1>
+  <div class="pinmy-style">PinMyStyle</div>
+  <div class="form-container">
+    <form method="POST" id="recommendations-form">
+      <label for="board_url">Pinterest Board URL:</label>
+      <input type="text" id="board_url" name="board_url" required>
+      
+      <label for="profile_url">Pinterest Profile URL:</label>
+      <input type="text" id="profile_url" name="profile_url" required>
+      
+      <button type="submit">Get Recommendations</button>
+    </form>
+  </div>
+</body>
+</html>

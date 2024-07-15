@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myntra Recommendations</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e8c8f1, #d3a8d3, #b48ac0, #f8a8c5); /* Lavender, pink, purple, and light pink blend */
+      font-family: 'Roboto', sans-serif; /* Modern font */
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 150px;
+    }
+    h1 {
+      color: #59094a; /* Myntra's primary color */
+    }
+    .recommendations {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+    .recommendation {
+      background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(29, 0, 0, 0.297); /* Slightly stronger shadow */
+      text-align: center;
+      padding: 20px;
+      margin: 10px;
+      max-width: 300px;
+      opacity: 0; /* Initially hidden */
+      animation: fadeIn 0.5s forwards; /* Animation */
+    }
+    .recommendation img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .recommendation:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+    .recommendation:nth-child(2) {
+      animation-delay: 1s;
+    }
+    .recommendation:nth-child(3) {
+      animation-delay: 1.5s;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <img src="https://aartisto.com/wp-content/uploads/2020/11/myntra.png" alt="Myntra Logo" class="logo">
+    <h1>Myntra Recommendations</h1>
+    <div class="recommendations">
+      {% for recommendation in recommendations %}
+      <div class="recommendation">
+        <img src="{{ recommendation.image_url }}" alt="{{ recommendation.product }}">
+        <h2>{{ recommendation.product }}</h2>
+        <p><a href="{{ recommendation.product_url }}" target="_blank">View Product</a></p>
+        <p>{{ recommendation.price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
