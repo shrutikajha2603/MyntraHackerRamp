@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>360 Degree Product View</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: black;
+      }
+      canvas {
+        display: block;
+      }
+      h1 {
+    text-align: center;
+    background: linear-gradient(45deg, purple, yellow);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 3em; /* Adjust as needed */
+    margin: 20px 0; /* Adjust as needed */
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Snap It, Share it, Wear it : Snapchat Integration with Myntra</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      let scene, camera, renderer;
+      let textureLoader = new THREE.TextureLoader();
+      let productImages = [];
+
+      // Update the path to your images folder
+      for (let i = 0; i < 8; i++) {
+        productImages.push(`images/image${i}.jpg`);
+      }
+
+      function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        camera.position.z = 2;
+
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        let textureIndex = 0;
+        // let texture = textureLoader.load(productImages[textureIndex], () => {
+        let geometry = new THREE.BoxGeometry(1, 1, 1);
+        let material = new THREE.MeshBasicMaterial({});
+        let cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        function animate() {
+          requestAnimationFrame(animate);
+          cube.rotation.y += 0.005;
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        textureLoader.load(
+          productImages[textureIndex],
+          (texture) => {
+            cube.material.map = texture;
+            cube.material.needsUpdate = true;
+          },
+          undefined,
+          (error) => {
+            console.error("An error occurred loading the image:", error);
+          }
+        );
+
+        setInterval(() => {
+                textureIndex = (textureIndex + 1) % productImages.length;
+                console.log('Loading image:', productImages[textureIndex]); 
+                textureLoader.load(productImages[textureIndex], (texture) => {
+                    cube.material.map = texture;
+                    cube.material.needsUpdate = true;
+                }, undefined, (error) => {
+                    console.error('An error occurred loading the image:', error);
+                });
+            }, 2000); 
+      }
+
+      init();
+    </script>
+  </body>
+</html>
